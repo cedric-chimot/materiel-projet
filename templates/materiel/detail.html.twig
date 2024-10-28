@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails du matériel
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Détails du Matériel</h1>
+        <p><strong>Id :</strong> {{ materiel.id }}</p>
+        <p><strong>Nom :</strong> {{ materiel.nom }}</p>
+        <p><strong>Prix HT :</strong> {{ materiel.prixHt }}</span></p>
+        <p><strong>TVA :</strong> {{ materiel.tva.libelle }}</p>
+        <p><strong>Prix TTC :</strong> {{ materiel.prixTtc }}</span></p>
+        <p><strong>Quantité :</strong> {{ materiel.quantite }}</span></p>
+        <p><strong>Date de Création :</strong> {{ materiel.dateCreation ? materiel.dateCreation|date('d-m-Y') : '' }}</p>
+    </div>
+    
+{% endblock %}

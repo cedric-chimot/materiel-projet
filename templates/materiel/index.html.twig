@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center p-3">Liste du Matériel</h1>
+    <table id="materielsTable" class="display">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prix HT</th>
+                <th>TVA</th>
+                <th>Prix TTC</th>
+                <th>Quantité</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for materiel in materiels %}
+                <tr>
+                    <td>{{ materiel.id }}</td>
+                    <td>{{ materiel.nom }}</td>
+                    <td>{{ materiel.prixHt }}</td>
+                    <td>{{ materiel.tva.libelle }}</td>
+                    <td>{{ materiel.prixTtc }}</td>
+                    <td>{{ materiel.quantite }}</td>
+                    <td>{{ materiel.dateCreation ? materiel.dateCreation|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#materielModal"
+                            data-id="{{ materiel.id }}"
+                        >
+                            Voir
+                        </button>
+                        <a href="{{ path('generate_pdf', {id: materiel.id}) }}" class="btn btn-success" target="_blank">Télécharger PDF</a>
+                        <a href="{{ path('materiel_decrement', {id: materiel.id}) }}" class="btn btn-warning">Décrémenter</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {# Modal Bootstrap pour afficher les détails du matériel #}
+    <div class="modal fade" id="materielModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="modalContent"></div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger" id="modifierBtn">Modifier</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('assets/js/modal.js') }}"></script>
+
+{% endblock %}

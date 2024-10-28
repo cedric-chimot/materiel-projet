@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le matériel{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1 class="text-center p-3">Modifier le matériel</h1>
+
+        {{ form_start(form) }}
+            <div class="row">
+                <div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.prix_ht) }}
+                        {{ form_widget(form.prix_ht, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.prix_ht) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.tva) }}
+                        {{ form_widget(form.tva, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.tva) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.prix_ttc) }}
+                        {{ form_widget(form.prix_ttc, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.prix_ttc) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.quantite) }}
+                        {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.quantite) }}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ form_label(form.date_creation) }}
+                        {{ form_widget(form.date_creation, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.date_creation) }}
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Valider</button>
+                <a href="{{ path('app_materiel') }}" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        {{ form_end(form) }}    
+    </div>
+
+    <script src="{{ asset('assets/js/calcul.js') }}"></script>
+    
+{% endblock %}
